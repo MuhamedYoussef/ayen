@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <main class="container pt-5">
+    <h1 class="display-3 text-center mt-4">Welcome to Ayen</h1>
+    <p class="lead text-center mx-auto" style="max-width: 40rem;">
+      In this simple app you can register and login to upload and manage your documents, 
+      <a href="{% url 'docs' %}">Learn more</a>
+    </p>
+  </main>
+{% endblock %}

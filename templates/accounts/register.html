@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block css %}
+<style>
+  form {
+    max-width: 30rem;
+    margin: 10vh auto;
+  }
+</style>
+{% endblock %}
+
+{% block main %}
+  <main class="container pt-5">
+    <form class="shadow rounded p-5" action="{% url 'register' %}" method="POST">
+      {% csrf_token %}
+      <h3 class="text-center mb-5">Join up</h3>
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" required placeholder="Email address">
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" required minlength="5" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Sign up</button>
+
+      <p class="mt-5">
+        Got an account you? <a href="{% url 'login' %}">Login</a>
+      </p>
+    </form>
+  </main>
+{% endblock %}

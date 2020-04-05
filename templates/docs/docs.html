@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  <main class="container pt-5">
+    <h3 class=" text-center my-5">
+      Welcome, 
+      <span class="text-info">{{ user.email }}</span> 
+    </h3>
+
+    
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#docmodal">
+      Add doc
+    </button>
+    
+    <section class="mt-5 pt-5">
+      <h4>Your files:</h4>
+
+      {% if user.docs.all %}
+        {% for file in user.docs.all %}
+          <a class="d-block" href="{{file.file.url}}" target="_blank">{{file.name}}</a>
+        {%  endfor %}
+      {% else %}
+        <p class="pl-3">No docs yet!</p>
+      {% endif %}
+
+    </section>
+
+
+    <!-- modal -->
+    <section>
+      <div class="modal fade" id="docmodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Upload Doc</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <form action="{% url 'docs' %}" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="modal-body py-5">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="name" placeholder="Doc name" required minlength="5">
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="customFile" name="file" required>
+                  <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Upload file</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+{% endblock %}
+
+{% block js %}
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+{% endblock %}
