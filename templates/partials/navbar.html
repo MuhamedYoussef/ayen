@@ -12,7 +12,10 @@
         </li>
         {% if user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'docs' %}">docs</a>
+          <a class="nav-link" href="{% url 'docs' %}">Docs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="/api/tasks">Tasks</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'logout' %}">Logout</a>
