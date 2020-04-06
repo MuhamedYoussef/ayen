@@ -3,7 +3,6 @@ from django.views import View
 
 
 # class TaskView(View):
-
 #     def get(self, request):
 #         return render(request, 'tasks/task_list.html')
 
